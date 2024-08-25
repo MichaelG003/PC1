@@ -28,7 +28,7 @@ namespace PC1.Controllers
         {
             if (ModelState.IsValid)
             {
-                decimal comision = operadorBolsa.MontoAbonar <= 300 ? 3m : 1m;
+                decimal comision = operadorBolsa.MontoAbonar <= 300 ? 1m : 3m;
                 decimal totalIGV = 0m;
                 decimal totalMonto = 0m;
 
