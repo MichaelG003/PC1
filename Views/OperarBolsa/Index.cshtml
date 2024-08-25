@@ -3,41 +3,70 @@
 <div class="form-container">
     <h1 style="text-align:center;">Opere en Bolsa</h1>
     <form asp-controller="OperarBolsa" asp-action="Operar" method="post">
-    
-    <div>
-        <label asp-for="NombreApellido">Nombres y apellidos</label>
-        <input asp-for="NombreApellido" class="form-control" placeholder="Nombre y Apellido">
-    </div>
-    <br>
-    <div>
-        <label asp-for="Correo">Correo Electrónico</label>
-        <input asp-for="Correo" type="email" class="form-control" placeholder="Correo Electrónico">
-    </div>
-    <br>
-    <div>
-        <label asp-for="FecOp">Fecha de Operación</label>
-        <input asp-for="FecOp" type="date" class="form-control"/>
-    </div>
-    <br>
-    <div>
-        <label>Instrumentos</label>
+        <div>
+            <label asp-for="NombreApellido">Nombres y apellidos</label>
+            <input asp-for="NombreApellido" class="form-control" placeholder="Nombre y Apellido">
+        </div>
         <br>
-        <input type="checkbox" asp-for="Instrumento" value="S&P 500" /> S&P 500 (500$)
+        <div>
+            <label asp-for="Correo">Correo Electrónico</label>
+            <input asp-for="Correo" type="email" class="form-control" placeholder="Correo Electrónico">
+        </div>
         <br>
-        <input type="checkbox" asp-for="Instrumento" value="Dow Jones" /> Dow Jones (300$)
+        <div>
+            <label asp-for="FecOp">Fecha de Operación</label>
+            <input asp-for="FecOp" type="date" class="form-control"/>
+        </div>
         <br>
-        <input type="checkbox" asp-for="Instrumento" value="Bonos US" /> Bonos US (120$)
-    </div>
-    <br>
-    <div>
-        <label asp-for="MontoAbonar">Monto a Abonar</label>
-        <input asp-for="MontoAbonar" type="number" class="form-control" placeholder="Monto en $"/>
-    </div>
-    <br>
-    <div>
+        <div>
+            <label>Instrumentos</label>
+            <br>
+            <input type="checkbox" name="Instrumento" value="S&P 500" /> S&P 500 (500$)
+            <br>
+            <input type="checkbox" name="Instrumento" value="Dow Jones" /> Dow Jones (300$)
+            <br>
+            <input type="checkbox" name="Instrumento" value="Bonos US" /> Bonos US (120$)
+        </div>
         <br>
-        <button type="submit" class="btn btn-primary">Invertir</button>
-    </div>
-    <br>
+        <div>
+            <label asp-for="MontoAbonar">Monto a Abonar</label>
+            <input asp-for="MontoAbonar" type="number" class="form-control" placeholder="Monto en $"/>
+        </div>
+        <br>
+        <div>
+            <br>
+            <button type="submit" class="btn btn-primary">Invertir</button>
+        </div>
+        <br>
     </form>
+
+    @if (ViewBag.Detalles != null && ((List<PC1.Controllers.InstrumentoDetalle>)ViewBag.Detalles).Any())
+    {
+        var detalles = ViewBag.Detalles as List<PC1.Controllers.InstrumentoDetalle>;
+        var comision = ViewBag.Comision as decimal?;
+        var total = ViewBag.Total as decimal?;
+        <h2>Resultado de la Operación</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Instrumento</th>
+                    <th>IGV</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detalle in detalles)
+                {
+                    <tr>
+                        <td>@detalle.Nombre</td>
+                        <td>@detalle.IGV$</td>
+                        <td>@detalle.Monto$</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h3>Comisión Cobrada: @comision$</h3>
+        <h3>Total a Pagar: @total$</h3>
+    }
+    
 </div>
