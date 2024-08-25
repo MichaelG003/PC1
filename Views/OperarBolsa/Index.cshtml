@@ -1,0 +1,43 @@
+@model PC1.Controllers.OperarBolsa
+
+<div class="form-container">
+    <h1 style="text-align:center;">Opere en Bolsa</h1>
+    <form asp-controller="OperarBolsa" asp-action="Operar" method="post">
+    
+    <div>
+        <label asp-for="NombreApellido">Nombres y apellidos</label>
+        <input asp-for="NombreApellido" class="form-control" placeholder="Nombre y Apellido">
+    </div>
+    <br>
+    <div>
+        <label asp-for="Correo">Correo Electrónico</label>
+        <input asp-for="Correo" type="email" class="form-control" placeholder="Correo Electrónico">
+    </div>
+    <br>
+    <div>
+        <label asp-for="FecOp">Fecha de Operación</label>
+        <input asp-for="FecOp" type="date" class="form-control"/>
+    </div>
+    <br>
+    <div>
+        <label>Instrumentos</label>
+        <br>
+        <input type="checkbox" asp-for="Instrumento" value="S&P 500" /> S&P 500 (500$)
+        <br>
+        <input type="checkbox" asp-for="Instrumento" value="Dow Jones" /> Dow Jones (300$)
+        <br>
+        <input type="checkbox" asp-for="Instrumento" value="Bonos US" /> Bonos US (120$)
+    </div>
+    <br>
+    <div>
+        <label asp-for="MontoAbonar">Monto a Abonar</label>
+        <input asp-for="MontoAbonar" type="number" class="form-control" placeholder="Monto en $"/>
+    </div>
+    <br>
+    <div>
+        <br>
+        <button type="submit" class="btn btn-primary">Invertir</button>
+    </div>
+    <br>
+    </form>
+</div>

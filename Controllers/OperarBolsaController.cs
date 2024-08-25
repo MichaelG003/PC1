@@ -28,5 +28,20 @@ namespace PC1.Controllers
         {
             return View("Error!");
         }
+
+    }
+
+    public class OperarBolsa
+    {
+        public string? NombreApellido {get; set;}
+
+        public string? Correo {get; set;}
+
+        public DateTime? FecOp { get; set; }
+
+        public string? Instrumento { get; set; }
+
+        public decimal? MontoAbonar { get; set;}
+
     }
 }
